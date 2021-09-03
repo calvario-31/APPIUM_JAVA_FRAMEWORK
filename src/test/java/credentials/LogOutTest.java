@@ -32,7 +32,8 @@ public class LogOutTest extends Base {
         topMenuPage = new TopMenuPage(driver);
         topMenuPage.logout();
 
-        Assert.assertTrue(mainPage.titleIsDisplayed());
+        Assert.assertTrue(mainPage.titleIsDisplayed(),
+                "Title was not displayed");
     }
 
     @AfterMethod(alwaysRun = true, description = "tearing down the driver")

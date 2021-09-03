@@ -27,7 +27,8 @@ public class DummyFailTest extends Base {
         mainPage = new MainPage(driver);
         mainPage.loginStandardUser();
 
-        Assert.assertTrue(mainPage.errorMessageIsDisplayed());
+        Assert.assertTrue(mainPage.errorMessageIsDisplayed(),
+                "Error message was not displayed");
     }
 
     @AfterMethod(alwaysRun = true, description = "tearing down the driver")

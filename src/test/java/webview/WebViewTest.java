@@ -39,9 +39,12 @@ public class WebViewTest extends Base {
         webViewPage.goToWebPage(url);
         webViewPage.loginOnWeb(credentialsModel.getUsername(), credentialsModel.getPassword());
 
-        Assert.assertTrue(webViewPage.inputUrlIsDisplayed());
+        Assert.assertTrue(webViewPage.inputUrlIsDisplayed(),
+                "Web View page was not displayed");
+
         topMenuPage.logout();
-        Assert.assertTrue(mainPage.titleIsDisplayed());
+        Assert.assertTrue(mainPage.titleIsDisplayed(),
+                "Main page was not displayed");
     }
 
     @AfterMethod(alwaysRun = true, description = "tearing down the driver")

@@ -39,7 +39,8 @@ public class DrawingTest extends Base {
         drawingPage.drawX();
 
         topMenuPage.logout();
-        Assert.assertTrue(mainPage.titleIsDisplayed());
+        Assert.assertTrue(mainPage.titleIsDisplayed(),
+                "Title was not displayed");
     }
 
     @AfterMethod(alwaysRun = true, description = "tearing down the driver")

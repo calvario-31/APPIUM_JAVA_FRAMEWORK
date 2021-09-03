@@ -56,7 +56,9 @@ public class ShoppingTest extends Base {
         }
 
         topMenuPage = new TopMenuPage(driver);
-        Assert.assertEquals(topMenuPage.getItemCount(), itemList.size());
+        Assert.assertEquals(topMenuPage.getItemCount(), itemList.size(),
+                "Item count was not the same as the item list size");
+
         topMenuPage.goToCheckout();
 
         yourCartPage = new YourCartPage(driver);
@@ -67,17 +69,23 @@ public class ShoppingTest extends Base {
                 userDataModel.getZipCode());
 
         overviewPage = new OverviewPage(driver);
-        Assert.assertEquals(overviewPage.getTotal(), sum);
+        Assert.assertEquals(overviewPage.getTotal(), sum,
+                "The total from the data was not the same as the UI");
+
         overviewPage.finishCheckout();
 
         successPage = new SuccessPage(driver);
-        Assert.assertTrue(successPage.successPageIsDisplayed());
+        Assert.assertTrue(successPage.successPageIsDisplayed(),
+                "Success page was not displayed");
+
         successPage.goToHome();
 
-        Assert.assertTrue(shoppingPage.shoppingPageIsDisplayed());
+        Assert.assertTrue(shoppingPage.shoppingPageIsDisplayed(),
+                "Shopping page was not displayed");
 
         topMenuPage.logout();
-        Assert.assertTrue(mainPage.titleIsDisplayed());
+        Assert.assertTrue(mainPage.titleIsDisplayed(),
+                "Login page was not displayed");
     }
 
     @AfterMethod(alwaysRun = true, description = "tearing down the driver")
