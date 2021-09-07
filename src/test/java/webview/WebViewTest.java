@@ -18,9 +18,10 @@ public class WebViewTest extends Base {
     private TopMenuPage topMenuPage;
     private WebViewPage webViewPage;
 
-    @BeforeMethod(alwaysRun = true, description = "setting up the driver")
+    @BeforeMethod(alwaysRun = true, description = "setup")
     public void setUp() {
         setup();
+        initPages();
     }
 
     @Test(dataProvider = "web view dp", groups = {"regression", "smoke"})
@@ -29,13 +30,10 @@ public class WebViewTest extends Base {
     @TmsLink("8dvc3IEV")
     @Parameters({"credentials", "url to test"})
     public void webViewTest(CredentialsModel credentialsModel, String url) {
-        mainPage = new MainPage(driver);
         mainPage.login(credentialsModel.getUsername(), credentialsModel.getPassword());
 
-        topMenuPage = new TopMenuPage(driver);
         topMenuPage.goToWebView();
 
-        webViewPage = new WebViewPage(driver);
         webViewPage.goToWebPage(url);
         webViewPage.loginOnWeb(credentialsModel.getUsername(), credentialsModel.getPassword());
 
@@ -47,7 +45,7 @@ public class WebViewTest extends Base {
                 "Main page was not displayed");
     }
 
-    @AfterMethod(alwaysRun = true, description = "tearing down the driver")
+    @AfterMethod(alwaysRun = true, description = "teardown")
     public void tearDown() {
         teardown();
     }
@@ -58,5 +56,12 @@ public class WebViewTest extends Base {
         return new Object[][]{
                 {dataReader.getStandardCredentials(), dataReader.getSauceLabsUrl()}
         };
+    }
+
+    @Override
+    public void initPages() {
+        mainPage = new MainPage(driver);
+        topMenuPage = new TopMenuPage(driver);
+        webViewPage = new WebViewPage(driver);
     }
 }

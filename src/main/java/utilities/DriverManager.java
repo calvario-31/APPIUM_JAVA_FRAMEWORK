@@ -31,7 +31,7 @@ public class DriverManager {
         return driver;
     }
 
-    public AndroidDriver<AndroidElement> buildLocalDriver() {
+    private AndroidDriver<AndroidElement> buildLocalDriver() {
         try {
             String appiumUrl = "http://localhost:4723/wd/hub";
 
@@ -43,7 +43,6 @@ public class DriverManager {
             desiredCapabilities.setCapability("appWaitActivity", "com.swaglabsmobileapp.MainActivity");
             desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
             desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-            desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, osVersion);
             desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
             desiredCapabilities.setCapability(MobileCapabilityType.APP, fileAPK.getAbsolutePath());
 
@@ -56,7 +55,7 @@ public class DriverManager {
         }
     }
 
-    public AndroidDriver<AndroidElement> buildRemoteDriver() {
+    private AndroidDriver<AndroidElement> buildRemoteDriver() {
         try {
             String browserstackLocal = System.getenv("BROWSERSTACK_LOCAL");
             String buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
@@ -94,16 +93,15 @@ public class DriverManager {
         }
     }
 
-
     public static void assignDriverParameters() {
         DriverManager.runOnServer = System.getenv("JOB_NAME") != null;
 
         if (DriverManager.runOnServer) {
-            DriverManager.osVersion = System.getProperty("osVersion");
             DriverManager.deviceName = System.getProperty("deviceName");
+            DriverManager.osVersion = System.getProperty("osVersion");
         } else {
             String deviceName = System.getProperty("deviceName");
-            String osVersion = System.getProperty("deviceName");
+            String osVersion = System.getProperty("osVersion");
             if (deviceName == null) {
                 Log.info("Setting default emulator name to mobile_emulator");
                 deviceName = "mobile_emulator";

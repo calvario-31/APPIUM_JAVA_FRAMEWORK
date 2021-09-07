@@ -14,9 +14,10 @@ import utilities.Base;
 public class DummyFailTest extends Base {
     private MainPage mainPage;
 
-    @BeforeMethod(alwaysRun = true, description = "setting up the driver")
+    @BeforeMethod(alwaysRun = true, description = "setup")
     public void setUp() {
         setup();
+        initPages();
     }
 
     @Test(groups = {"failed"})
@@ -24,15 +25,19 @@ public class DummyFailTest extends Base {
     @Severity(SeverityLevel.TRIVIAL)
     @TmsLink("8dvc3IEV")
     public void dummyFailTest() {
-        mainPage = new MainPage(driver);
         mainPage.loginStandardUser();
 
         Assert.assertTrue(mainPage.errorMessageIsDisplayed(),
                 "Error message was not displayed");
     }
 
-    @AfterMethod(alwaysRun = true, description = "tearing down the driver")
+    @AfterMethod(alwaysRun = true, description = "teardown")
     public void tearDown() {
         teardown();
+    }
+
+    @Override
+    public void initPages() {
+        mainPage = new MainPage(driver);
     }
 }

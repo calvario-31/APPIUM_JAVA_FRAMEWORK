@@ -14,9 +14,10 @@ import utilities.datareader.DataReader;
 public class LockedOutUserTest extends Base {
     private MainPage mainPage;
 
-    @BeforeMethod(alwaysRun = true, description = "setting up the driver")
+    @BeforeMethod(alwaysRun = true, description = "setup")
     public void setUp() {
         setup();
+        initPages();
     }
 
     @Test(groups = {"regression", "smoke"})
@@ -24,7 +25,6 @@ public class LockedOutUserTest extends Base {
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("8dvc3IEV")
     public void lockedOutWithTapTest() {
-        mainPage = new MainPage(driver);
         mainPage.loginLockedOutUser();
         Assert.assertTrue(mainPage.errorMessageIsDisplayed(),
                 "Error message was not displayed");
@@ -36,13 +36,12 @@ public class LockedOutUserTest extends Base {
     @TmsLink("8dvc3IEV")
     @Parameters({"credentials"})
     public void lockedOutWithSendKeysTest(CredentialsModel credentialsModel) {
-        mainPage = new MainPage(driver);
         mainPage.login(credentialsModel.getUsername(), credentialsModel.getPassword());
         Assert.assertTrue(mainPage.errorMessageIsDisplayed(),
                 "Error message was not displayed");
     }
 
-    @AfterMethod(alwaysRun = true, description = "tearing down the driver")
+    @AfterMethod(alwaysRun = true, description = "teardown")
     public void tearDown() {
         teardown();
     }
@@ -52,5 +51,10 @@ public class LockedOutUserTest extends Base {
         return new Object[][]{
                 {new DataReader().getLockedOutCredentials()}
         };
+    }
+
+    @Override
+    public void initPages() {
+        mainPage = new MainPage(driver);
     }
 }

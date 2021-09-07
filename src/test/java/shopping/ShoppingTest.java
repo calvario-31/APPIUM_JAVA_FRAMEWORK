@@ -31,7 +31,7 @@ public class ShoppingTest extends Base {
     private OverviewPage overviewPage;
     private SuccessPage successPage;
 
-    @BeforeMethod(alwaysRun = true, description = "setting up the driver")
+    @BeforeMethod(alwaysRun = true, description = "setup")
     public void setUp() {
         setup();
     }
@@ -42,11 +42,7 @@ public class ShoppingTest extends Base {
     @TmsLink("8dvc3IEV")
     @Parameters({"item list", "user data"})
     public void shoppingTest(List<ShoppingItemModel> itemList, UserDataModel userDataModel) {
-        mainPage = new MainPage(driver);
         mainPage.loginStandardUser();
-
-        shoppingPage = new ShoppingPage(driver);
-        itemDetailPage = new ItemDetailPage(driver);
 
         double sum = 0;
         for (ShoppingItemModel shoppingItemModel : itemList) {
@@ -55,26 +51,21 @@ public class ShoppingTest extends Base {
             sum += shoppingItemModel.getPrice();
         }
 
-        topMenuPage = new TopMenuPage(driver);
         Assert.assertEquals(topMenuPage.getItemCount(), itemList.size(),
                 "Item count was not the same as the item list size");
 
         topMenuPage.goToCheckout();
 
-        yourCartPage = new YourCartPage(driver);
         yourCartPage.continueCheckout();
 
-        informationPage = new InformationPage(driver);
         informationPage.fillForm(userDataModel.getFirstname(), userDataModel.getLastname(),
                 userDataModel.getZipCode());
 
-        overviewPage = new OverviewPage(driver);
         Assert.assertEquals(overviewPage.getTotal(), sum,
                 "The total from the data was not the same as the UI");
 
         overviewPage.finishCheckout();
 
-        successPage = new SuccessPage(driver);
         Assert.assertTrue(successPage.successPageIsDisplayed(),
                 "Success page was not displayed");
 
@@ -88,7 +79,7 @@ public class ShoppingTest extends Base {
                 "Login page was not displayed");
     }
 
-    @AfterMethod(alwaysRun = true, description = "tearing down the driver")
+    @AfterMethod(alwaysRun = true, description = "teardown")
     public void tearDown() {
         teardown();
     }
@@ -98,5 +89,17 @@ public class ShoppingTest extends Base {
         return new Object[][]{
                 {new DataReader().getShoppingList(), new UserDataModel()}
         };
+    }
+
+    @Override
+    public void initPages() {
+        mainPage = new MainPage(driver);
+        shoppingPage = new ShoppingPage(driver);
+        itemDetailPage = new ItemDetailPage(driver);
+        topMenuPage = new TopMenuPage(driver);
+        yourCartPage = new YourCartPage(driver);
+        informationPage = new InformationPage(driver);
+        overviewPage = new OverviewPage(driver);
+        successPage = new SuccessPage(driver);
     }
 }

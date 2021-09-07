@@ -18,9 +18,10 @@ public class DrawingTest extends Base {
     private TopMenuPage topMenuPage;
     private DrawingPage drawingPage;
 
-    @BeforeMethod(alwaysRun = true, description = "setting up the driver")
+    @BeforeMethod(alwaysRun = true, description = "setup")
     public void setUp() {
         setup();
+        initPages();
     }
 
     @Test(dataProvider = "valid credentials", groups = {"regression"})
@@ -29,21 +30,19 @@ public class DrawingTest extends Base {
     @TmsLink("8dvc3IEV")
     @Parameters({"credentials"})
     public void drawingXTest(CredentialsModel credentialsModel) {
-        mainPage = new MainPage(driver);
         mainPage.login(credentialsModel.getUsername(), credentialsModel.getPassword());
 
-        topMenuPage = new TopMenuPage(driver);
         topMenuPage.goToDrawing();
 
-        drawingPage = new DrawingPage(driver);
         drawingPage.drawX();
 
         topMenuPage.logout();
+
         Assert.assertTrue(mainPage.titleIsDisplayed(),
                 "Title was not displayed");
     }
 
-    @AfterMethod(alwaysRun = true, description = "tearing down the driver")
+    @AfterMethod(alwaysRun = true, description = "teardown")
     public void tearDown() {
         teardown();
     }
@@ -53,5 +52,12 @@ public class DrawingTest extends Base {
         return new Object[][]{
                 {new DataReader().getStandardCredentials()}
         };
+    }
+
+    @Override
+    public void initPages() {
+        mainPage = new MainPage(driver);
+        topMenuPage = new TopMenuPage(driver);
+        drawingPage = new DrawingPage(driver);
     }
 }

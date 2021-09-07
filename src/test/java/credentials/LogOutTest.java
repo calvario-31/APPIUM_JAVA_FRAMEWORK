@@ -16,9 +16,10 @@ public class LogOutTest extends Base {
     private MainPage mainPage;
     private TopMenuPage topMenuPage;
 
-    @BeforeMethod(alwaysRun = true, description = "setting up the driver")
+    @BeforeMethod(alwaysRun = true, description = "setup")
     public void setUp() {
         setup();
+        initPages();
     }
 
     @Test(groups = {"smoke"})
@@ -26,18 +27,22 @@ public class LogOutTest extends Base {
     @Severity(SeverityLevel.BLOCKER)
     @TmsLink("8dvc3IEV")
     public void logoutTest() {
-        mainPage = new MainPage(driver);
         mainPage.loginStandardUser();
 
-        topMenuPage = new TopMenuPage(driver);
         topMenuPage.logout();
 
         Assert.assertTrue(mainPage.titleIsDisplayed(),
                 "Title was not displayed");
     }
 
-    @AfterMethod(alwaysRun = true, description = "tearing down the driver")
+    @AfterMethod(alwaysRun = true, description = "teardown")
     public void tearDown() {
         teardown();
+    }
+
+    @Override
+    public void initPages() {
+        mainPage = new MainPage(driver);
+        topMenuPage = new TopMenuPage(driver);
     }
 }

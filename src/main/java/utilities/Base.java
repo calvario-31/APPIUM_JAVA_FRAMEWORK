@@ -2,6 +2,8 @@ package utilities;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import utilities.listeners.SuiteListeners;
 import utilities.listeners.TestListeners;
@@ -23,4 +25,11 @@ public abstract class Base {
     public AndroidDriver<AndroidElement> getDriver() {
         return driver;
     }
+
+    @BeforeMethod(alwaysRun = true, description = "setup")
+    public abstract void setUp();
+    @AfterMethod(alwaysRun = true, description = "teardown")
+    public abstract void tearDown();
+
+    public abstract void initPages();
 }
