@@ -9,12 +9,11 @@ import utilities.Gestures;
 
 public abstract class Page {
     protected AndroidDriver<AndroidElement> driver;
-    protected WebDriverWait wait;
     protected Gestures gestures;
+    protected final int defaultTimeOut = 5;
 
-    public Page(AndroidDriver<AndroidElement> driver, int timeOut) {
+    public Page(AndroidDriver<AndroidElement> driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, timeOut);
         gestures = new Gestures(this.driver);
     }
 
@@ -34,13 +33,14 @@ public abstract class Page {
         return driver.findElement(locator);
     }
 
-    protected AndroidElement waitVisibility(By locator) {
+    protected AndroidElement waitVisibility(By locator, int timeOut) {
+        WebDriverWait wait = new WebDriverWait(driver, timeOut);
         return (AndroidElement) wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    protected boolean elementIsDisplayed(By locator) {
+    protected boolean elementIsDisplayed(By locator, int timeOut) {
         try {
-            waitVisibility(locator);
+            waitVisibility(locator, timeOut);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

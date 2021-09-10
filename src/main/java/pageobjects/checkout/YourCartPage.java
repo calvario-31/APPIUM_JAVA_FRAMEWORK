@@ -13,7 +13,7 @@ public class YourCartPage extends Page {
     private final By labelDescription = MobileBy.AndroidUIAutomator("text(\"DESCRIPTION\")");
 
     public YourCartPage(AndroidDriver<AndroidElement> driver) {
-        super(driver, 5);
+        super(driver);
     }
 
     @Step("Clicking on continue checkout")
@@ -25,6 +25,6 @@ public class YourCartPage extends Page {
 
     @Override
     protected void waitPageToLoad() {
-        waitVisibility(labelDescription);
+        waitVisibility(labelDescription, defaultTimeOut);
     }
 }

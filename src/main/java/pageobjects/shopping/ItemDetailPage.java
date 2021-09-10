@@ -15,7 +15,7 @@ public class ItemDetailPage extends Page {
     private final String price = "test-Price";
 
     public ItemDetailPage(AndroidDriver<AndroidElement> driver) {
-        super(driver, 5);
+        super(driver);
     }
 
     @Step("Add item: {0} to cart with price: {1}")
@@ -36,6 +36,6 @@ public class ItemDetailPage extends Page {
 
     @Override
     protected void waitPageToLoad() {
-        waitVisibility(buttonBackToProducts);
+        waitVisibility(buttonBackToProducts, defaultTimeOut);
     }
 }

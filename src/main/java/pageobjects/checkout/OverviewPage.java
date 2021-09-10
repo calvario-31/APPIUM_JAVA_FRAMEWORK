@@ -14,7 +14,7 @@ public class OverviewPage extends Page {
     private final By listItems = MobileBy.AccessibilityId("test-CHECKOUT: OVERVIEW");
 
     public OverviewPage(AndroidDriver<AndroidElement> driver) {
-        super(driver, 5);
+        super(driver);
     }
 
     @Step("Getting item total")
@@ -34,6 +34,6 @@ public class OverviewPage extends Page {
 
     @Override
     protected void waitPageToLoad() {
-        waitVisibility(listItems);
+        waitVisibility(listItems, defaultTimeOut);
     }
 }

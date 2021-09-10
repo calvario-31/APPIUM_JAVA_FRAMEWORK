@@ -16,7 +16,7 @@ public class InformationPage extends Page {
     private final By bodyInfo = MobileBy.AccessibilityId("test-Checkout: Your Info");
 
     public InformationPage(AndroidDriver<AndroidElement> driver) {
-        super(driver, 5);
+        super(driver);
     }
 
     @Step("Filling the form with firstname: {0}, lastname: {1}, zipcode: {2}")
@@ -37,6 +37,6 @@ public class InformationPage extends Page {
 
     @Override
     protected void waitPageToLoad() {
-        waitVisibility(bodyInfo);
+        waitVisibility(bodyInfo, defaultTimeOut);
     }
 }

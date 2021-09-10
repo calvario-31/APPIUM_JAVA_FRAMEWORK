@@ -14,7 +14,7 @@ public class DrawingPage extends Page {
     private final By buttonOk = MobileBy.id("android:id/button1");
 
     public DrawingPage(AndroidDriver<AndroidElement> driver) {
-        super(driver, 5);
+        super(driver);
     }
 
     @Step("Drawing x on the canvas")
@@ -26,13 +26,13 @@ public class DrawingPage extends Page {
         Log.info("Clicking on save button");
         find(buttonSave).click();
         Log.info("Clicking on ok button");
-        waitVisibility(buttonOk).click();
+        waitVisibility(buttonOk, defaultTimeOut).click();
         Log.info("Clicking on clear button");
-        waitVisibility(buttonClear).click();
+        waitVisibility(buttonClear, defaultTimeOut).click();
     }
 
     @Override
     protected void waitPageToLoad() {
-        waitVisibility(buttonClear);
+        waitVisibility(buttonClear, defaultTimeOut);
     }
 }

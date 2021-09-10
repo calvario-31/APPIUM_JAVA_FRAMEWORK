@@ -18,7 +18,7 @@ public class TopMenuPage extends Page {
             "description(\"test-Cart\").childSelector(className(\"android.widget.TextView\"))");
 
     public TopMenuPage(AndroidDriver<AndroidElement> driver) {
-        super(driver, 5);
+        super(driver);
     }
 
     @Step("Logging out")
@@ -27,7 +27,7 @@ public class TopMenuPage extends Page {
         Log.info("Clicking on the menu burger");
         find(menuBurger).click();
         Log.info("Clicking on logout");
-        waitVisibility(logoutOption).click();
+        waitVisibility(logoutOption, defaultTimeOut).click();
     }
 
     @Step("Go to drawing")
@@ -36,7 +36,7 @@ public class TopMenuPage extends Page {
         Log.info("Clicking on the menu burger");
         find(menuBurger).click();
         Log.info("Clicking on drawing");
-        waitVisibility(drawingOption).click();
+        waitVisibility(drawingOption, defaultTimeOut).click();
     }
 
     @Step("Go to web view")
@@ -45,7 +45,7 @@ public class TopMenuPage extends Page {
         Log.info("Clicking on the menu burger");
         find(menuBurger).click();
         Log.info("Clicking on web view");
-        waitVisibility(webViewOption).click();
+        waitVisibility(webViewOption, defaultTimeOut).click();
     }
 
     @Step("Getting the item count text")
@@ -65,6 +65,6 @@ public class TopMenuPage extends Page {
 
     @Override
     protected void waitPageToLoad() {
-        waitVisibility(menuBurger);
+        waitVisibility(menuBurger, defaultTimeOut);
     }
 }

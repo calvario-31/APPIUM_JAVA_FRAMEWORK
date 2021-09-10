@@ -6,6 +6,7 @@ import io.appium.java_client.android.AndroidElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pageobjects.Page;
 import utilities.Log;
 
@@ -17,7 +18,7 @@ public class WebViewPage extends Page {
     private final By bodyWebView = MobileBy.AccessibilityId("test-WEBVIEW SELECTION");
 
     public WebViewPage(AndroidDriver<AndroidElement> driver) {
-        super(driver, 5);
+        super(driver);
     }
 
     @Step("Going to web page {0}")
@@ -45,6 +46,7 @@ public class WebViewPage extends Page {
         driver.context((String) contextNames.toArray()[1]); // set context to WEBVIEW_1
         Log.info("Filling web username");
         Log.debug("username: " + username);
+        WebDriverWait wait = new WebDriverWait(driver, defaultTimeOut);
         wait.until(ExpectedConditions.visibilityOfElementLocated(inputUsername)).sendKeys(username);
         Log.info("Filling web password");
         Log.debug("password: " + password);
@@ -59,11 +61,11 @@ public class WebViewPage extends Page {
 
     @Step("Verifying the input is displayed")
     public boolean inputUrlIsDisplayed() {
-        return elementIsDisplayed(inputUrl);
+        return elementIsDisplayed(inputUrl, defaultTimeOut);
     }
 
     @Override
     protected void waitPageToLoad() {
-        waitVisibility(bodyWebView);
+        waitVisibility(bodyWebView, defaultTimeOut);
     }
 }

@@ -34,6 +34,7 @@ public class ShoppingTest extends Base {
     @BeforeMethod(alwaysRun = true, description = "setup")
     public void setUp() {
         setup();
+        initPages();
     }
 
     @Test(dataProvider = "shopping dp", groups = {"regression"})

@@ -18,7 +18,7 @@ public class MainPage extends Page {
     private final String lockedOutUser = "test-locked_out_user";
 
     public MainPage(AndroidDriver<AndroidElement> driver) {
-        super(driver, 5);
+        super(driver);
     }
 
     @Step("Login into the app with username {0} and password {1}")
@@ -59,16 +59,16 @@ public class MainPage extends Page {
     @Step("Verifying error message is displayed")
     public boolean errorMessageIsDisplayed() {
         Log.info("Verifying error message is displayed");
-        return elementIsDisplayed(errorMessage);
+        return elementIsDisplayed(errorMessage, defaultTimeOut);
     }
 
     @Step("Verifying title is displayed")
     public boolean titleIsDisplayed() {
-        return elementIsDisplayed(title);
+        return elementIsDisplayed(title, defaultTimeOut);
     }
 
     @Override
     protected void waitPageToLoad() {
-        waitVisibility(title);
+        waitVisibility(title, defaultTimeOut);
     }
 }

@@ -13,13 +13,13 @@ public class SuccessPage extends Page {
     private final By bodySuccess = MobileBy.AccessibilityId("test-CHECKOUT: COMPLETE!");
 
     public SuccessPage(AndroidDriver<AndroidElement> driver) {
-        super(driver, 5);
+        super(driver);
     }
 
     @Step("Verifying success page is displayed")
     public boolean successPageIsDisplayed() {
         Log.info("Verifying success page is displayed");
-        return elementIsDisplayed(bodySuccess);
+        return elementIsDisplayed(bodySuccess, defaultTimeOut);
     }
 
     @Step("Clicking on back to home")
@@ -30,6 +30,6 @@ public class SuccessPage extends Page {
 
     @Override
     protected void waitPageToLoad() {
-        ;
+
     }
 }

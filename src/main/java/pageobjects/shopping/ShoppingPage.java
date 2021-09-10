@@ -12,7 +12,7 @@ public class ShoppingPage extends Page {
     private final By title = MobileBy.AccessibilityId("test-Cart drop zone");
 
     public ShoppingPage(AndroidDriver<AndroidElement> driver) {
-        super(driver, 5);
+        super(driver);
     }
 
     @Step("Going to detail of item: {0}")
@@ -25,11 +25,11 @@ public class ShoppingPage extends Page {
     @Step("Verify shopping page is displayed")
     public boolean shoppingPageIsDisplayed() {
         Log.info("Verify shopping page is displayed");
-        return elementIsDisplayed(title);
+        return elementIsDisplayed(title, defaultTimeOut);
     }
 
     @Override
     protected void waitPageToLoad() {
-        waitVisibility(title);
+        waitVisibility(title, defaultTimeOut);
     }
 }
