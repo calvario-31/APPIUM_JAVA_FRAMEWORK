@@ -1,9 +1,16 @@
-APK TESTED: saucelabs.apk
+# APPIUM JAVA FRAMEWORK
+Apk Tested: 
 
-to run on command line: mvn clean test -DsuiteName=${suite name}
+    saucelabs.apk
 
-example: mvn clean test -DsuiteName=regression
+Run on command line: 
 
+    mvn clean test -DsuiteName=${suite name}
+
+Example: 
+
+    mvn clean test -DsuiteName=regression
 
 Jenkins top maven script:
-clean test -DsuiteName=${suiteName} -DdeviceName="${deviceName}" -DosVersion="${osVersion}"
+
+    clean test -DsuiteName=${suiteName} -DdeviceName="${deviceName}" -DosVersion="${osVersion}"
