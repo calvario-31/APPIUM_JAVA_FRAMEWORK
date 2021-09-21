@@ -9,9 +9,9 @@ import pageobjects.Page;
 import utilities.Log;
 
 public class OverviewPage extends Page {
-    private final String labelItemTotal = "Item total:";
-    private final String buttonFinish = "test-FINISH";
-    private final By listItems = MobileBy.AccessibilityId("test-CHECKOUT: OVERVIEW");
+    private final String itemTotalLabel = "Item total:";
+    private final String finishButton = "test-FINISH";
+    private final By itemsList = MobileBy.AccessibilityId("test-CHECKOUT: OVERVIEW");
 
     public OverviewPage(AndroidDriver<AndroidElement> driver) {
         super(driver);
@@ -21,7 +21,7 @@ public class OverviewPage extends Page {
     public double getTotal() {
         waitPageToLoad();
         Log.info("Getting item total");
-        String priceText = scrollIntoTextContains(labelItemTotal).getText();
+        String priceText = scrollIntoTextContains(itemTotalLabel).getText();
         Log.debug("Item total: " + priceText);
         return Double.parseDouble(priceText.substring(13));
     }
@@ -29,11 +29,11 @@ public class OverviewPage extends Page {
     @Step("Clicking on finish button")
     public void finishCheckout() {
         Log.info("Clicking on finish button");
-        scrollIntoDescription(buttonFinish).click();
+        scrollIntoDescription(finishButton).click();
     }
 
     @Override
     protected void waitPageToLoad() {
-        waitVisibility(listItems, defaultTimeOut);
+        waitVisibility(itemsList, defaultTimeOut);
     }
 }

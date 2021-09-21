@@ -9,9 +9,9 @@ import pageobjects.Page;
 import utilities.Log;
 
 public class DrawingPage extends Page {
-    private final By buttonClear = MobileBy.AccessibilityId("test-CLEAR");
-    private final By buttonSave = MobileBy.AccessibilityId("test-SAVE");
-    private final By buttonOk = MobileBy.id("android:id/button1");
+    private final By clearButton = MobileBy.AccessibilityId("test-CLEAR");
+    private final By saveButton = MobileBy.AccessibilityId("test-SAVE");
+    private final By okButton = MobileBy.id("android:id/button1");
 
     public DrawingPage(AndroidDriver<AndroidElement> driver) {
         super(driver);
@@ -24,15 +24,15 @@ public class DrawingPage extends Page {
         generalSwipe(30, 30, 60, 60);
         generalSwipe(60, 30, 30, 60);
         Log.info("Clicking on save button");
-        find(buttonSave).click();
+        find(saveButton).click();
         Log.info("Clicking on ok button");
-        waitVisibility(buttonOk, defaultTimeOut).click();
+        waitVisibility(okButton, defaultTimeOut).click();
         Log.info("Clicking on clear button");
-        waitVisibility(buttonClear, defaultTimeOut).click();
+        waitVisibility(clearButton, defaultTimeOut).click();
     }
 
     @Override
     protected void waitPageToLoad() {
-        waitVisibility(buttonClear, defaultTimeOut);
+        waitVisibility(clearButton, defaultTimeOut);
     }
 }

@@ -13,9 +13,9 @@ import utilities.Log;
 import java.util.Set;
 
 public class WebViewPage extends Page {
-    private final By inputUrl = MobileBy.AccessibilityId("test-enter a https url here...");
-    private final By buttonGoToSite = MobileBy.AccessibilityId("test-GO TO SITE");
-    private final By bodyWebView = MobileBy.AccessibilityId("test-WEBVIEW SELECTION");
+    private final By urlInput = MobileBy.AccessibilityId("test-enter a https url here...");
+    private final By goToSiteButton = MobileBy.AccessibilityId("test-GO TO SITE");
+    private final By webViewBody = MobileBy.AccessibilityId("test-WEBVIEW SELECTION");
 
     public WebViewPage(AndroidDriver<AndroidElement> driver) {
         super(driver);
@@ -26,9 +26,9 @@ public class WebViewPage extends Page {
         waitPageToLoad();
         Log.info("Filling the url input");
         Log.debug("Url: " + url);
-        find(inputUrl).sendKeys(url);
+        find(urlInput).sendKeys(url);
         Log.info("Clicking on the go to site button");
-        find(buttonGoToSite).click();
+        find(goToSiteButton).click();
     }
 
     @Step("Do something on the web page")
@@ -61,11 +61,11 @@ public class WebViewPage extends Page {
 
     @Step("Verifying the input is displayed")
     public boolean inputUrlIsDisplayed() {
-        return elementIsDisplayed(inputUrl, defaultTimeOut);
+        return elementIsDisplayed(urlInput, defaultTimeOut);
     }
 
     @Override
     protected void waitPageToLoad() {
-        waitVisibility(bodyWebView, defaultTimeOut);
+        waitVisibility(webViewBody, defaultTimeOut);
     }
 }

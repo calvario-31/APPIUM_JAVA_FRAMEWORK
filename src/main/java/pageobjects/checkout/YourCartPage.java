@@ -9,8 +9,8 @@ import pageobjects.Page;
 import utilities.Log;
 
 public class YourCartPage extends Page {
-    private final String buttonCheckout = "test-CHECKOUT";
-    private final By labelDescription = MobileBy.AndroidUIAutomator("text(\"DESCRIPTION\")");
+    private final String checkoutButton = "test-CHECKOUT";
+    private final By descriptionLabel = MobileBy.AndroidUIAutomator("text(\"DESCRIPTION\")");
 
     public YourCartPage(AndroidDriver<AndroidElement> driver) {
         super(driver);
@@ -20,11 +20,11 @@ public class YourCartPage extends Page {
     public void continueCheckout() {
         waitPageToLoad();
         Log.info("Clicking on continue checkout");
-        scrollIntoDescription(buttonCheckout).click();
+        scrollIntoDescription(checkoutButton).click();
     }
 
     @Override
     protected void waitPageToLoad() {
-        waitVisibility(labelDescription, defaultTimeOut);
+        waitVisibility(descriptionLabel, defaultTimeOut);
     }
 }

@@ -9,11 +9,11 @@ import pageobjects.Page;
 import utilities.Log;
 
 public class TopMenuPage extends Page {
-    private final By menuBurger = MobileBy.AccessibilityId("test-Menu");
+    private final By burgerMenu = MobileBy.AccessibilityId("test-Menu");
     private final By logoutOption = MobileBy.AccessibilityId("test-LOGOUT");
     private final By drawingOption = MobileBy.AccessibilityId("test-DRAWING");
     private final By webViewOption = MobileBy.AccessibilityId("test-WEBVIEW");
-    private final By buttonCheckout = MobileBy.AccessibilityId("test-Cart");
+    private final By checkoutButton = MobileBy.AccessibilityId("test-Cart");
     private final By itemCount = MobileBy.AndroidUIAutomator(
             "description(\"test-Cart\").childSelector(className(\"android.widget.TextView\"))");
 
@@ -25,7 +25,7 @@ public class TopMenuPage extends Page {
     public void logout() {
         waitPageToLoad();
         Log.info("Clicking on the menu burger");
-        find(menuBurger).click();
+        find(burgerMenu).click();
         Log.info("Clicking on logout");
         waitVisibility(logoutOption, defaultTimeOut).click();
     }
@@ -34,7 +34,7 @@ public class TopMenuPage extends Page {
     public void goToDrawing() {
         waitPageToLoad();
         Log.info("Clicking on the menu burger");
-        find(menuBurger).click();
+        find(burgerMenu).click();
         Log.info("Clicking on drawing");
         waitVisibility(drawingOption, defaultTimeOut).click();
     }
@@ -43,7 +43,7 @@ public class TopMenuPage extends Page {
     public void goToWebView() {
         waitPageToLoad();
         Log.info("Clicking on the menu burger");
-        find(menuBurger).click();
+        find(burgerMenu).click();
         Log.info("Clicking on web view");
         waitVisibility(webViewOption, defaultTimeOut).click();
     }
@@ -60,11 +60,11 @@ public class TopMenuPage extends Page {
     @Step("Going to checkout")
     public void goToCheckout() {
         Log.info("Clicking on checkout");
-        find(buttonCheckout).click();
+        find(checkoutButton).click();
     }
 
     @Override
     protected void waitPageToLoad() {
-        waitVisibility(menuBurger, defaultTimeOut);
+        waitVisibility(burgerMenu, defaultTimeOut);
     }
 }

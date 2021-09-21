@@ -9,7 +9,7 @@ import pageobjects.Page;
 import utilities.Log;
 
 public class SuccessPage extends Page {
-    private final By buttonBackToHome = MobileBy.AccessibilityId("test-BACK HOME");
+    private final By backToHomeButton = MobileBy.AccessibilityId("test-BACK HOME");
     private final By bodySuccess = MobileBy.AccessibilityId("test-CHECKOUT: COMPLETE!");
 
     public SuccessPage(AndroidDriver<AndroidElement> driver) {
@@ -25,7 +25,7 @@ public class SuccessPage extends Page {
     @Step("Clicking on back to home")
     public void goToHome() {
         Log.info("Clicking on back to home");
-        find(buttonBackToHome).click();
+        find(backToHomeButton).click();
     }
 
     @Override

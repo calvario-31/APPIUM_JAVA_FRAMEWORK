@@ -10,9 +10,9 @@ import pageobjects.Page;
 import utilities.Log;
 
 public class ItemDetailPage extends Page {
-    private final By buttonBackToProducts = MobileBy.AccessibilityId("test-BACK TO PRODUCTS");
-    private final String buttonAddToCart = "test-ADD TO CART";
-    private final String price = "test-Price";
+    private final By backToProductsButton = MobileBy.AccessibilityId("test-BACK TO PRODUCTS");
+    private final String addToCartButton = "test-ADD TO CART";
+    private final String priceLabel = "test-Price";
 
     public ItemDetailPage(AndroidDriver<AndroidElement> driver) {
         super(driver);
@@ -25,17 +25,17 @@ public class ItemDetailPage extends Page {
         Log.debug("Item name: " + itemName);
         scrollIntoText(itemName);
         Log.info("Verifying price matches the example data");
-        String priceText = scrollIntoDescription(price).getText();
+        String priceText = scrollIntoDescription(priceLabel).getText();
         Log.debug("priceText: " + priceText);
         Assert.assertEquals(Double.parseDouble(priceText.substring(1)), itemPrice);
         Log.info("Clicking on add to cart");
-        scrollIntoDescription(buttonAddToCart).click();
+        scrollIntoDescription(addToCartButton).click();
         Log.info("Clicking on back to products");
-        find(buttonBackToProducts).click();
+        find(backToProductsButton).click();
     }
 
     @Override
     protected void waitPageToLoad() {
-        waitVisibility(buttonBackToProducts, defaultTimeOut);
+        waitVisibility(backToProductsButton, defaultTimeOut);
     }
 }

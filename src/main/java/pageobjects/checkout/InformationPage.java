@@ -9,10 +9,10 @@ import pageobjects.Page;
 import utilities.Log;
 
 public class InformationPage extends Page {
-    private final By inputUsername = MobileBy.AccessibilityId("test-First Name");
-    private final By inputPassword = MobileBy.AccessibilityId("test-Last Name");
-    private final By inputZipcode = MobileBy.AccessibilityId("test-Zip/Postal Code");
-    private final By buttonContinue = MobileBy.AccessibilityId("test-CONTINUE");
+    private final By usernameInput = MobileBy.AccessibilityId("test-First Name");
+    private final By passwordInput = MobileBy.AccessibilityId("test-Last Name");
+    private final By zipcodeInput = MobileBy.AccessibilityId("test-Zip/Postal Code");
+    private final By continueButton = MobileBy.AccessibilityId("test-CONTINUE");
     private final By bodyInfo = MobileBy.AccessibilityId("test-Checkout: Your Info");
 
     public InformationPage(AndroidDriver<AndroidElement> driver) {
@@ -24,15 +24,15 @@ public class InformationPage extends Page {
         waitPageToLoad();
         Log.info("Filling firstname");
         Log.debug("Firstname: " + firstname);
-        find(inputUsername).sendKeys(firstname);
+        find(usernameInput).sendKeys(firstname);
         Log.info("Filling lastname");
         Log.debug("Lastname: " + lastname);
-        find(inputPassword).sendKeys(lastname);
+        find(passwordInput).sendKeys(lastname);
         Log.info("Filling zipcode");
         Log.debug("Zipcode: " + zipcode);
-        find(inputZipcode).sendKeys(zipcode);
+        find(zipcodeInput).sendKeys(zipcode);
         Log.info("Clicking on continue");
-        find(buttonContinue).click();
+        find(continueButton).click();
     }
 
     @Override

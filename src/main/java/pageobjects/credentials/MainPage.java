@@ -9,9 +9,9 @@ import pageobjects.Page;
 import utilities.Log;
 
 public class MainPage extends Page {
-    private final By inputUsername = MobileBy.AccessibilityId("test-Username");
-    private final By inputPassword = MobileBy.AccessibilityId("test-Password");
-    private final By buttonLogin = MobileBy.AccessibilityId("test-LOGIN");
+    private final By usernameInput = MobileBy.AccessibilityId("test-Username");
+    private final By passwordInput = MobileBy.AccessibilityId("test-Password");
+    private final By loginButton = MobileBy.AccessibilityId("test-LOGIN");
     private final By errorMessage = MobileBy.AccessibilityId("test-Error message");
     private final By title = MobileBy.className("android.widget.ImageView");
     private final String standardUser = "test-standard_user";
@@ -26,12 +26,12 @@ public class MainPage extends Page {
         waitPageToLoad();
         Log.info("Filling username");
         Log.debug("Username: " + username);
-        find(inputUsername).sendKeys(username);
+        find(usernameInput).sendKeys(username);
         Log.info("Filling password");
         Log.debug("Password: " + password);
-        find(inputPassword).sendKeys(password);
+        find(passwordInput).sendKeys(password);
         Log.info("Clicking on login button");
-        find(buttonLogin).click();
+        find(loginButton).click();
     }
 
     @Step("Login with locked out user")
@@ -42,7 +42,7 @@ public class MainPage extends Page {
         Log.info("Scrolling to top");
         toTop();
         Log.info("Clicking on login button");
-        find(buttonLogin).click();
+        find(loginButton).click();
     }
 
     @Step("Login with standard user")
@@ -53,7 +53,7 @@ public class MainPage extends Page {
         Log.info("Scrolling to top");
         toTop();
         Log.info("Clicking on login button");
-        find(buttonLogin).click();
+        find(loginButton).click();
     }
 
     @Step("Verifying error message is displayed")
