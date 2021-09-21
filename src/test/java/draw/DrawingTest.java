@@ -29,8 +29,8 @@ public class DrawingTest extends Base {
     @Severity(SeverityLevel.MINOR)
     @TmsLink("8dvc3IEV")
     @Parameters({"credentials"})
-    public void drawingXTest(CredentialsModel credentialsModel) {
-        mainPage.login(credentialsModel.getUsername(), credentialsModel.getPassword());
+    public void drawingXTest(CredentialsModel credentials) {
+        mainPage.login(credentials.getUsername(), credentials.getPassword());
 
         topMenuPage.goToDrawing();
 

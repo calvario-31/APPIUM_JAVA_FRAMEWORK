@@ -35,8 +35,8 @@ public class LockedOutUserTest extends Base {
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("8dvc3IEV")
     @Parameters({"credentials"})
-    public void lockedOutWithSendKeysTest(CredentialsModel credentialsModel) {
-        mainPage.login(credentialsModel.getUsername(), credentialsModel.getPassword());
+    public void lockedOutWithSendKeysTest(CredentialsModel credentials) {
+        mainPage.login(credentials.getUsername(), credentials.getPassword());
         Assert.assertTrue(mainPage.errorMessageIsDisplayed(),
                 "Error message was not displayed");
     }

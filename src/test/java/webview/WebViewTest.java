@@ -29,13 +29,13 @@ public class WebViewTest extends Base {
     @Severity(SeverityLevel.TRIVIAL)
     @TmsLink("8dvc3IEV")
     @Parameters({"credentials", "url to test"})
-    public void webViewTest(CredentialsModel credentialsModel, String url) {
-        mainPage.login(credentialsModel.getUsername(), credentialsModel.getPassword());
+    public void webViewTest(CredentialsModel credentials, String url) {
+        mainPage.login(credentials.getUsername(), credentials.getPassword());
 
         topMenuPage.goToWebView();
 
         webViewPage.goToWebPage(url);
-        webViewPage.loginOnWeb(credentialsModel.getUsername(), credentialsModel.getPassword());
+        webViewPage.loginOnWeb(credentials.getUsername(), credentials.getPassword());
 
         Assert.assertTrue(webViewPage.inputUrlIsDisplayed(),
                 "Web View page was not displayed");

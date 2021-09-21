@@ -42,7 +42,7 @@ public class ShoppingTest extends Base {
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("8dvc3IEV")
     @Parameters({"item list", "user data"})
-    public void shoppingTest(List<ShoppingItemModel> itemList, UserDataModel userDataModel) {
+    public void shoppingTest(List<ShoppingItemModel> itemList, UserDataModel userData) {
         mainPage.loginStandardUser();
 
         double sum = 0;
@@ -59,8 +59,8 @@ public class ShoppingTest extends Base {
 
         yourCartPage.continueCheckout();
 
-        informationPage.fillForm(userDataModel.getFirstname(), userDataModel.getLastname(),
-                userDataModel.getZipCode());
+        informationPage.fillForm(userData.getFirstname(), userData.getLastname(),
+                userData.getZipCode());
 
         Assert.assertEquals(overviewPage.getTotal(), sum,
                 "The total from the data was not the same as the UI");
